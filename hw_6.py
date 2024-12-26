@@ -26,18 +26,19 @@ class Record:
     def add_phone(self, phone):
         self.phones.append(Phone(phone))
 
-    def remove_phone(self, phone):
-        for ph in self.phones:
-            if ph.value == phone:
-                self.phones.remove(ph)
-                return
-        raise ValueError(f"Номер {phone} не знайдено.")
-
     def find_phone(self, phone):
         for ph in self.phones:
             if ph.value == phone:
                 return ph
         return None
+    
+    def remove_phone(self, phone):
+        ph = self.find_phone(phone)
+        if ph:
+            self.phones.remove(ph)
+            return
+        raise ValueError(f"Номер {phone} не видалено, бо не знайдено.")
+
 
     def edit_phone(self, old_phone, new_phone):
         if self.find_phone(old_phone):
@@ -88,12 +89,15 @@ print(book)
 
 # Знаходження та редагування телефону для John
 john = book.find("John")
-john.edit_phone("1234567890", "1112266933")
+john.edit_phone("1234567890", "1112361933")
 print(john)
 
 # Пошук конкретного телефону у записі John
 found_phone = john.find_phone("5555555555")
 print(f"{john.name}: {found_phone}")
+
+# видалення номеру телефону
+john.remove_phone('5555555555')
 
 # Видалення запису Jane
 book.delete("Jane")

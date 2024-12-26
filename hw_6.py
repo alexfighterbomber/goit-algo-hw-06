@@ -42,8 +42,8 @@ class Record:
 
     def edit_phone(self, old_phone, new_phone):
         if self.find_phone(old_phone):
-            self.remove_phone(old_phone)
             self.add_phone(new_phone)
+            self.remove_phone(old_phone)
             return
         raise ValueError(f"Номер {old_phone} не знайдено.")
 
@@ -89,7 +89,7 @@ print(book)
 
 # Знаходження та редагування телефону для John
 john = book.find("John")
-john.edit_phone("1234567890", "1112361933")
+john.edit_phone("1234567890", "1116524823")
 print(john)
 
 # Пошук конкретного телефону у записі John
